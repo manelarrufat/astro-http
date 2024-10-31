@@ -4,19 +4,20 @@ import mdx from '@astrojs/mdx';
 
 import sitemap from '@astrojs/sitemap';
 
-// import node from '@astrojs/node';
-import cloudflare from '@astrojs/cloudflare';
+import node from '@astrojs/node';
+import db from '@astrojs/db';
+// import cloudflare from '@astrojs/cloudflare';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://example.com',
-  integrations: [mdx(), sitemap()],
-  output: 'hybrid',
-  adapter: cloudflare()
-
-
+  integrations: [mdx(), sitemap(), db()],
   // output: 'hybrid',
-  // adapter: node({
-  //   mode: 'standalone',
-  // }),
+  // adapter: cloudflare()
+
+
+  output: 'hybrid',
+  adapter: node({
+    mode: 'standalone',
+  }),
 });
