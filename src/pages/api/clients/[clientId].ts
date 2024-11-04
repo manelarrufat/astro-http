@@ -11,8 +11,24 @@ export const GET:APIRoute = async ({params, request}) => {
         clientId: params.clientId
     }
 
+    const clientId = params.clientId ?? '';
+
+    const client = await db.select().from(Clients).where(eq(Clients.id, +clientId));
+
+    if(client.length === 0) {
+        return new Response(
+            JSON.stringify({ msg: `Client with id ${clientId} not found`}), 
+            { 
+                status:404,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            },
+        );
+    }
+
     return new Response(
-        JSON.stringify(body), 
+        JSON.stringify(client.at(0)), 
         { 
             status:200,
             headers: {
