@@ -5,12 +5,6 @@ export const prerender = false;
 
 export const GET:APIRoute = async ({params, request}) => {
 
-    
-    const body = {
-        method: 'GET',
-        clientId: params.clientId
-    }
-
     const clientId = params.clientId ?? '';
 
     const client = await db.select().from(Clients).where(eq(Clients.id, +clientId));
