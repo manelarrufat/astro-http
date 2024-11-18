@@ -8,18 +8,18 @@ import node from '@astrojs/node';
 import db from '@astrojs/db';
 import cloudflare from '@astrojs/cloudflare';
 
+import vue from '@astrojs/vue';
+
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://561c4e09.astro-http-1u1.pages.dev/',
-  integrations: [mdx(), sitemap(), db()],
-  output: 'hybrid',
-  adapter: cloudflare(),
-
-
+  site: 'https://example.com',
+  integrations: [mdx(), sitemap(), db(), vue()],
   // output: 'hybrid',
-  // adapter: node({
-  //   mode: 'standalone',
-  // }),
+  // adapter: cloudflare(),
+
+
+  output: 'hybrid',
+  adapter: node({
+    mode: 'standalone',
+  }),
 });
-
-
